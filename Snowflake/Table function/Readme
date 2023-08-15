@@ -1,0 +1,6 @@
+Why TABLE functions .? Why not view/stored Procedure.
+  
+   A table function is a type of user-defined function (UDF) that returns a table as its output.
+      - Table functions can be used in joins, filters, and aggregations, while views and stored procedures cannot.
+      - Table functions can accept parameters, while views cannot. Stored procedures can also accept parameters, but they need to be called using the CALL command, which does not allow for further operations on the returned value1.
+      - Table functions can be passed as references to other stored procedures, which can improve performance and security3.
