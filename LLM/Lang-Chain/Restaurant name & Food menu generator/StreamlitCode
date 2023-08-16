@@ -1,0 +1,13 @@
+import streamlit as st
+import test
+
+cuisine=st.sidebar.selectbox("Pick the cuisine",("Indian","American","Italian","Mexican","Arabic"))
+
+if cuisine:
+    response=test.restaurant(cuisine)
+    name=response['name'].strip()
+    st.header(f"Welcome to {name}" )
+    st.write("***Menu Items***")
+    menu=response['menu'].strip().split(",")
+    for item in menu:
+        st.write(item)
