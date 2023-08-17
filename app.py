@@ -8,9 +8,9 @@ conn = snowflake.connector.connect(
     user=st.secrets["usr"],
     password=st.secrets["pswrd"],
     account=st.secrets["acc"],
-    warehouse=COMPUTE_WH,
-    database=DEV_DB,
-    schema=TEST_SCHEMA
+    warehouse='COMPUTE_WH',
+    database='DEV_DB',
+    schema='TEST_SCHEMA'
 )
 st.title('Hi :wave: Welcome!')
 PRODUCT_LINE = ["CL", "PL"]
