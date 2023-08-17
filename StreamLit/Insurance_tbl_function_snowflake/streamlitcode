@@ -7,12 +7,12 @@ from key import password
 st.set_page_config(page_title="My Streamlit App", layout="wide", initial_sidebar_state="expanded")
 # Create a connection object with your Snowflake credentials
 conn = snowflake.connector.connect(
-    user=******,
-    password=******,
-    account=******,
-    warehouse=******,
-    database=******,
-    schema=******
+    user=st.secrets["usr"],
+    password=st.secrets["pswrd"],
+    account=st.secrets["acc"],
+    warehouse=COMPUTE_WH,
+    database=DEV_DB,
+    schema=TEST_SCHEMA
 )
 st.title('Hi :wave: Welcome!')
 PRODUCT_LINE = ["CL", "PL"]
