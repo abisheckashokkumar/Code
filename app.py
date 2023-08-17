@@ -1,8 +1,6 @@
 import snowflake.connector
 import pandas as pd
 import streamlit as st
-from key import password
-
 
 st.set_page_config(page_title="My Streamlit App", layout="wide", initial_sidebar_state="expanded")
 # Create a connection object with your Snowflake credentials
