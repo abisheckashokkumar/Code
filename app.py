@@ -12,7 +12,7 @@ conn = snowflake.connector.connect(
     database='DEV_DB',
     schema='TEST_SCHEMA'
 )
-st.title('Hi :wave: Welcome!')
+st.title('Hi :wave: Welcome To Insurance Reporting!')
 PRODUCT_LINE = ["CL", "PL"]
 IN_PROD_LINE = st.sidebar.selectbox("PRODUCT LINE", PRODUCT_LINE)
 
