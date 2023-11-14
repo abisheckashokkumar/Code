@@ -5,7 +5,7 @@ import pandas as pd
 # url = "https://docs.google.com/spreadsheets/d/1xFcacDgwKPaueNpctErxi0AdMLxnb_1Sh04OOiLi1D0/edit#gid=0"
 st.set_page_config(page_title="KHK Business App", layout="wide")#, initial_sidebar_state="expanded"
 
-conn = st.connection("gsheets", type=GSheetsConnection")
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 col1, col2 = st.columns([1, 1])
 if st.button("See data"):
