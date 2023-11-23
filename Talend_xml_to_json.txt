@@ -1,0 +1,18 @@
+// Import necessary Java classes
+import java.util.HashMap;
+
+// Get the input row
+HashMap<String, Object> inputRow = (HashMap<String, Object>)input_row;
+
+// Create the output row
+HashMap<String, Object> outputRow = new HashMap<String, Object>();
+
+// Extract values from the input row
+String forAttribute = (String) inputRow.get("Input#for");
+String txtValue = (String) inputRow.get("Input#text");
+
+// Create the desired JSON structure
+outputRow.put("Input", txtValue);
+
+// Output the result
+output_row = outputRow;
