@@ -1,0 +1,31 @@
+import xml.etree.ElementTree as ET
+import json
+
+# Parse the XML file
+tree = ET.parse('testxml.xml')  # Replace 'your_file.xml' with your actual XML file
+root = tree.getroot()
+
+# Function to recursively convert XML to JSON
+def xml_to_json(element):
+    json_data = {}
+
+    for child in element:
+        if child:
+            # Recursive call for nested elements
+            json_data[child.tag] = xml_to_json(child)
+        else:
+            # Leaf node, store text content
+            json_data[child.tag] = child.text
+
+    # Handle attributes
+    if element.attrib:
+        # Assuming only one attribute is present, use [0] if multiple
+        json_data[element.tag] = element.attrib['rate']
+
+    return json_data
+
+# Convert XML to JSON
+json_data = xml_to_json(root)
+
+# Print or save the JSON data
+print(json.dumps(json_data, indent=2))
