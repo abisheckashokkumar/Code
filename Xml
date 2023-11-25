@@ -1,0 +1,29 @@
+import xml.etree.ElementTree as ET
+import xml.dom.minidom as minidom
+
+# Parse the XML file
+tree = ET.parse('your_file.xml')  # Replace 'your_file.xml' with your actual XML file
+root = tree.getroot()
+
+# Function to update XML structure
+def update_xml_structure(element):
+    # Create a new element with the same tag
+    new_element = ET.Element(element.tag)
+
+    # Copy the text content from the original element
+    new_element.text = element.text
+
+    # Append the new element to the parent
+    element.getparent().replace(element, new_element)
+
+# Traverse the XML and update structure
+for inputitem in root.iter('inputitem'):
+    update_xml_structure(inputitem)
+
+# Save the modified XML to a file
+tree.write('modified_file.xml')
+
+# Optional: Pretty print the XML file
+xml_content = minidom.parse('modified_file.xml').toprettyxml(indent="    ")
+with open('modified_file.xml', 'w') as xml_file:
+    xml_file.write(xml_content)
