@@ -16,9 +16,9 @@ def update_xml_structure(element):
     # Append the new element to the parent
     element.getparent().replace(element, new_element)
 
-# Traverse the XML and update structure
-for inputitem in root.iter('inputitem'):
-    update_xml_structure(inputitem)
+# Traverse the XML and update structure for all elements
+for element in root.iter():
+    update_xml_structure(element)
 
 # Save the modified XML to a file
 tree.write('modified_file.xml')
