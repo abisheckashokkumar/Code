@@ -14,7 +14,12 @@ def update_xml_structure(element):
     new_element.text = element.text
 
     # Append the new element to the parent
-    element.getparent().replace(element, new_element)
+    element_parent = element.getparent()
+    if element_parent is not None:
+        element_parent.replace(element, new_element)
+    else:
+        # If there is no parent, it means 'element' is the root
+        tree._setroot(new_element)
 
 # Traverse the XML and update structure for all elements
 for element in root.iter():
