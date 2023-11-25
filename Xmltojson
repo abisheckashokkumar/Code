@@ -1,0 +1,41 @@
+import xml.etree.ElementTree as ET
+import json
+
+# Your JSON data
+json_data = {"Ratingdata": {"input": "123"}}
+
+# Function to convert JSON to XML
+def json_to_xml(json_data, parent=None):
+    if parent is None:
+        parent = ET.Element('root')
+
+    for key, value in json_data.items():
+        if isinstance(value, dict):
+            # Recursive call for nested dictionaries
+            child = ET.SubElement(parent, key)
+            json_to_xml(value, parent=child)
+        else:
+            # Add simple elements
+            ET.SubElement(parent, key).text = str(value)
+
+    return parent
+
+# Convert JSON to XML
+xml_root = json_to_xml(json_data)
+
+# Create ElementTree and save to file
+tree = ET.ElementTree(xml_root)
+tree.write('output.xml')
+
+
+
+
+----
+import json
+
+# Read JSON from a local file
+with open('input.json', 'r') as json_file:
+    json_data = json.load(json_file)
+
+# Print or use the loaded JSON data
+print(json_data)
