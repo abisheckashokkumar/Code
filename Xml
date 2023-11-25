@@ -13,10 +13,14 @@ def update_xml_structure(element):
     # Copy the text content from the original element
     new_element.text = element.text
 
-    # Append the new element to the parent
+    # Find the parent of the original element
     element_parent = element.getparent()
+
+    # If there is a parent, replace the original element with the new one
     if element_parent is not None:
-        element_parent.replace(element, new_element)
+        index = element_parent.index(element)
+        element_parent.insert(index, new_element)
+        element_parent.remove(element)
     else:
         # If there is no parent, it means 'element' is the root
         tree._setroot(new_element)
