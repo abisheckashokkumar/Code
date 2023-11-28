@@ -1,1 +1,72 @@
 'ascii' codec can't encode character u'\u2013' in position 627: ordinal not in range(128)
+
+
+
+import sys
+import os
+import json
+#import concurrent.futures
+import xml.etree.ElementTree as ET
+
+
+def main(direc):
+    path=direc + '/'
+    for file in os.listdir(path):
+        if(file.split(".")[1]=="xml"):
+#       with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
+         # Parse the XML file
+           data=path + file
+           tree = ET.parse(data)  # Replace 'your_file.xml' with your actual XML file
+           root = tree.getroot()
+           parent = ET.Element(root.tag)
+   #        print(parent)
+         # Convert XML to JSON
+           json_data = xml_to_json(root)
+           #print(json_data)
+         # Convert JSON to XML
+           xml_root = json_to_xml(json_data,parent)
+         # Create ElementTree and save to file
+           tree = ET.ElementTree(xml_root)
+           tree.write(data)
+
+
+# Function to recursively convert XML to JSON
+def xml_to_json(element):
+    json_data = {}
+
+    for child in element:
+        if child:
+            # Recursive call for nested elements
+            json_data[child.tag] = xml_to_json(child)
+        else:
+            # Leaf node, store text content
+            json_data[child.tag] = child.text
+
+    return json_data
+
+
+# Function to convert JSON to XML
+def json_to_xml(json_data, parent):
+    if parent is None:
+        parent = ET.Element('RatingServiceData')
+
+    for key, value in json_data.items():
+        if isinstance(value, dict):
+            # Recursive call for nested dictionaries
+            child = ET.SubElement(parent, key)
+            json_to_xml(value, parent=child)
+        else:
+            # Add simple elements
+            ET.SubElement(parent, key).text = str(value)
+
+    return parent
+
+
+if __name__ == '__main__':
+    src_sys=sys.argv[1]
+    #print(src_sys)
+    env=sys.argv[2]
+    folder=sys.argv[3]
+    direc="/data/"+env+"/data/gs/da/landing/"+src_sys+"/"+folder
+    main(direc)
+
