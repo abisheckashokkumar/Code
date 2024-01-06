@@ -1,0 +1,24 @@
+***This task will create a new table called my_table by selecting data from my_source_table every day at 6 AM***
+CREATE TASK my_task
+  WAREHOUSE = my_warehouse
+  SCHEDULE = 'USING CRON 0 6 * * *'
+AS
+  CREATE TABLE my_table AS
+  SELECT * FROM my_source_table;
+
+
+
+***Stream - Task***
+CREATE STREAM my_stream
+  ON TABLE my_table;
+
+CREATE TASK create_table_task
+  WAREHOUSE = my_warehouse
+  AFTER MODIFY ON my_stream
+AS
+  CREATE TABLE my_table AS
+  SELECT * FROM my_source_table;
+
+
+***verify***
+SHOW TASKS LIKE 'create_table_task';
