@@ -1,3 +1,16 @@
+CREATE TABLE ddl_results (
+    original_query VARCHAR,
+    ddl_text VARIANT
+);
+
+INSERT INTO ddl_results (original_query, ddl_text)
+SELECT query_text AS original_query,
+       GET_DDL('TABLE', table_name) AS ddl_text
+FROM information_schema.tables
+WHERE table_schema = 'YOUR_SCHEMA_NAME'
+  AND table_name IN (SELECT query_text FROM get_ddl_queries);
+
+
 import xml.etree.ElementTree as ET
 import json
 
