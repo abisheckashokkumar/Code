@@ -15,3 +15,33 @@ def json_to_xml(json_data, parent=None):
             ET.SubElement(parent, key).text = encoded_value
 
     return parent
+
+
+
+------------
+CREATE OR REPLACE PROCEDURE execute_and_store_ddl()
+RETURNS STRING
+LANGUAGE SQL
+AS
+$$
+DECLARE
+    v_query_text VARCHAR;
+    v_pk_id INT;
+    v_ddl_text VARIANT;
+BEGIN
+    FOR query_row IN (SELECT pk_id, query_text FROM get_ddl_queries)
+    DO
+        v_pk_id := query_row.pk_id;
+        v_query_text := query_row.query_text;
+        
+        v_ddl_text := GET_DDL('TABLE', v_query_text);
+        
+        INSERT INTO ddl_results (pk_id, original_query, ddl_text)
+        VALUES (v_pk_id, v_query_text, v_ddl_text);
+    END FOR;
+    
+    RETURN 'DDL queries executed and results stored successfully.';
+END;
+$$;
+
+CALL execute_and_store_ddl();
