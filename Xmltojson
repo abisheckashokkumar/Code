@@ -1,3 +1,26 @@
+Subject: Heartfelt Thanks and Farewell
+
+Dear Team,
+
+I hope this message finds you well. As my last day at [Company Name] approaches tomorrow, I wanted to take a moment to express my deepest gratitude to each and every one of you.
+
+Working with this team has been an incredible journey for me—from the very first project straight out of college to the diverse range of experiences over the past 2.2 years. I've had the privilege of working on everything from production support to BI reports across various domains, thanks to your guidance, support, and trust.
+
+To my leads, thank you for believing in me and pushing me to explore new technologies. Your confidence in my abilities has been invaluable and has fueled my growth throughout my tenure here.
+
+To all my teammates and colleagues, your creativity, dedication, and camaraderie have made every day enjoyable and rewarding. I have learned so much from each of you, and I am genuinely grateful for the opportunity to have been part of such an innovative and supportive team.
+
+Saying goodbye is never easy, but I am confident that this team will continue to thrive and achieve great things. I wish each of you the very best in your future endeavors. Let's stay in touch—I look forward to crossing paths again soon.
+
+Thank you once again for everything.
+
+Warm regards,
+
+[Your Full Name]  
+[Your Contact Information]
+
+
+
 CREATE TABLE ddl_results (
     original_query VARCHAR,
     ddl_text VARIANT
